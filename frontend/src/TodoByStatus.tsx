@@ -5,6 +5,7 @@ import TodoList from "./TodoList.tsx";
 
 type Props = {
     todos: Todo[],
+    load: () => void,
 }
 
 
@@ -18,11 +19,11 @@ export default function TodoByStatus(props: Props) {
     return (
         <>
             <h2>Open Todos:</h2>
-            <TodoList todos={listOpen}/>
+            <TodoList todos={listOpen} load={props.load}/>
             <h2>In Progress:</h2>
-            <TodoList todos={listInProgress}/>
+            <TodoList todos={listInProgress} load={props.load}/>
             <h2>Done:</h2>
-            <TodoList todos={listDone}/>
+            <TodoList todos={listDone} load={props.load}/>
 
         </>
     )

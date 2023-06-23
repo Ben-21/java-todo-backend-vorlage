@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TodoByStatus from "./TodoByStatus.tsx";
 
@@ -39,7 +39,7 @@ export default function App() {
             <header></header>
             <main>
                 <h1>Todo Kanban</h1>
-                <TodoByStatus todos={databaseTodos}/>
+                <TodoByStatus todos={databaseTodos} load={loadTodos}/>
             </main>
             <footer>
                 <input type={"text"} value={inputValue} onChange={(event) => handleChange(event)}/>
