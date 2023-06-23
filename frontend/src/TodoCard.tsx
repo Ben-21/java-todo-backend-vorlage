@@ -10,10 +10,6 @@ type Props = {
 
 
 
-
-
-
-
 export default function TodoCard(props: Props) {
 
     function handleDelete (){
