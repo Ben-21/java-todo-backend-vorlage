@@ -1,20 +1,16 @@
-
 import {Todo} from "./models.ts";
 
 type Props = {
     todo: Todo,
-    }
+}
 
 
-
-export default function Todo(props: Props){
+export default function TodoCard(props: Props) {
 
     return (
         <>
-
-            {props.todo.description}
+            <h4>{props.todo.description}</h4>
 
         </>
     )
-
 }
