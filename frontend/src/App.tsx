@@ -1,31 +1,50 @@
+import React, {ChangeEvent, useEffect, useState} from "react";
+import axios from "axios";
+import TodoByStatus from "./TodoByStatus.tsx";
+
+
 export default function App() {
 
-    const dummy = [
-        {
-            id: "1",
-            description: "wash the dishes",
-            status: "open",
+    const [databaseTodos, setDatabaseTodos] = useState<any[]>([]);
+    const [inputValue, setInputValue] = useState("");
 
-        },
-        {
-            id: "2",
-            description: "Touran in die Waschstraße fahren",
-            status: "done",
 
-        },
-        {
-            id: "c596",
-            description: "Getränke kaufen",
-            status: "DONE"
-       }
-    ]
+    function loadTodos() {
+        axios.get("/api/todo")
+            .then(response => response.data)
+            .catch(console.error)
+            .then(data => setDatabaseTodos(data))
+    }
 
+    useEffect(loadTodos, []);
+
+
+    //Input Field ---> Add new Todo
+    //===========================================
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setInputValue(event.target.value);
+
+    }
+
+    function saveTodo() {
+        axios.post("/api/todo", {description: inputValue, status: "OPEN"})
+            .catch(console.error)
+            .then(() => loadTodos())    //---> Seite aktualisieren
+    }
+
+    //===========================================
 
     return (
         <>
             <header></header>
-            <main></main>
-            <footer></footer>
+            <main>
+                <h1>Todo Kanban</h1>
+                <TodoByStatus todos={databaseTodos}/>
+            </main>
+            <footer>
+                <input type={"text"} value={inputValue} onChange={(event) => handleChange(event)}/>
+                <button onClick={saveTodo}>Apply</button>
+            </footer>
         </>
     )
 
