@@ -1,7 +1,7 @@
 import {Todo} from "./models.ts";
 import axios from "axios";
 import {useEffect, useState} from "react";
-
+import './TodoCard.css';
 
 type Props = {
     todo: Todo,
@@ -61,9 +61,15 @@ export default function TodoCard(props: Props) {
 
     return (
         <>
-            <h4>{props.todo.description}</h4>
-            {buttonDeleteVisible && <button onClick={handleDelete}>Delete</button>}
-            {buttonAdvanceVisible && <button onClick={handleAdvance}>Advance</button>}
+            <div className={"card"}>
+                <div className={"description"}>
+                    <h4>Description:</h4>
+                    <p>{props.todo.description}</p>
+                </div>
+                {buttonDeleteVisible && <button onClick={handleDelete}>Delete</button>}
+                {buttonAdvanceVisible && <button onClick={handleAdvance}>Advance</button>}
+            </div>
+
         </>
     )
 }

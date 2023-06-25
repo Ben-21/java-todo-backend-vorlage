@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TodoByStatus from "./TodoByStatus.tsx";
+import './App.css';
 
 
 export default function App() {
@@ -42,8 +43,11 @@ export default function App() {
                 <TodoByStatus todos={databaseTodos} load={loadTodos}/>
             </main>
             <footer>
-                <input type={"text"} value={inputValue} onChange={(event) => handleChange(event)}/>
-                <button onClick={saveTodo}>Send</button>
+                <fieldset>
+                    <legend>Add new Todo</legend>
+                    <input id={"inputNewTodo"} type={"text"} value={inputValue} onChange={(event) => handleChange(event)}/>
+                    <button onClick={saveTodo} className={"button"}>Send</button>
+                </fieldset>
             </footer>
         </>
     )
