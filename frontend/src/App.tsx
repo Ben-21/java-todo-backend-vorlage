@@ -43,7 +43,7 @@ export default function App() {
             </main>
             <footer>
                 <input type={"text"} value={inputValue} onChange={(event) => handleChange(event)}/>
-                <button onClick={saveTodo}>Apply</button>
+                <button onClick={saveTodo}>Send</button>
             </footer>
         </>
     )
